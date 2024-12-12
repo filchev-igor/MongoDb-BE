@@ -5,8 +5,17 @@ var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
-const { MONGODB_URL } = require("./constants/constants");
-import { connect } from "mongoose";
+const { getMongoDbUrl } = require("./constants/constants");
+const mongoose = require("mongoose");
+const dotenv = require("dotenv");
+
+dotenv.config();
+
+const username = process.env.MONGODB_USERNAME;
+const password = process.env.MONGODB_PASSWORD;
+const database = process.env.MONGODB_DATABASE;
+
+const mongoDbUrl = getMongoDbUrl({ username, password, database });
 
 var app = express();
 
@@ -23,11 +32,8 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
 
-connect(MONGODB_URL, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => {
-    console.log("Connected to MongoDB");
-    app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
-  })
+mongoose
+  .connect(mongoDbUrl)
   .catch((error) => console.error("MongoDB connection error:", error));
 
 // catch 404 and forward to error handler

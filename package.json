@@ -14,5 +14,8 @@
     "morgan": "~1.9.1",
     "prettier": "^3.4.2",
     "pug": "2.0.0-beta11"
+  },
+  "devDependencies": {
+    "dotenv": "^16.4.7"
   }
 }
