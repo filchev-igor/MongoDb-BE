@@ -1,13 +1,18 @@
 var express = require("express");
 var router = express.Router();
-const mongoose = require("mongoose");
-const { MONGODB_URL } = require("../constants/constants");
-
-mongoose.connect(MONGODB_URL);
+const { User } = require("../models/users");
 
 /* GET users listing. */
 router.get("/", function (req, res, next) {
-  res.send("respond with a resource");
+  //res.send("respond with a resource");
+
+  User.find()
+    .then(function (response) {
+      res.json(response);
+    })
+    .catch(function (err) {
+      res.json(err);
+    });
 });
 
 module.exports = router;
