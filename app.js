@@ -6,10 +6,10 @@ var logger = require("morgan");
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
 const conferencesRouter = require("./routes/conferences");
-const { getMongoDbUrl } = require("./constants/constants");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const cors = require("cors");
+const { getMongoDbUrl } = require("./constants/constants");
 
 dotenv.config();
 
