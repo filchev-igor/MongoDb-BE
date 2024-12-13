@@ -9,13 +9,15 @@ const conferencesRouter = require("./routes/conferences");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const cors = require("cors");
-const { getMongoDbUrl } = require("./constants/constants");
 
 dotenv.config();
 
 const username = process.env.MONGODB_USERNAME;
 const password = process.env.MONGODB_PASSWORD;
 const database = process.env.MONGODB_DATABASE;
+
+const getMongoDbUrl = ({ username, password, database }) =>
+  `mongodb+srv://${username}:${password}@cluster0.4m7d6.mongodb.net/${database}?retryWrites=true&w=majority&appName=Cluster0`;
 
 const mongoDbUrl = getMongoDbUrl({ username, password, database });
 
