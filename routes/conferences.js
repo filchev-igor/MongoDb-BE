@@ -1,5 +1,5 @@
 const express = require("express");
-const Conference = require("../models/Conference"); // Import the Conference model
+const Conference = require("../models/conference"); // Import the Conference model
 const { isValidObjectId } = require("mongoose");
 const router = express.Router();
 
