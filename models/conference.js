@@ -23,6 +23,7 @@ const ConferenceSchema = new mongoose.Schema({
   description: { type: String, required: true },
   speakers: [SpeakerSchema],
   agendas: [AgendaSchema],
+  participants: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }], // Array of participant IDs
 });
 
 // Transform _id to id
